@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Tugas 5 &#8212; Data Mining</title>
+    <title>Tugas 5 &#8212; Penambangan Data C</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,6 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Tugas 4" href="Tugas%204.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -95,7 +96,7 @@ const thebe_selector_output = ".output, .cell_output"
       <img src="_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Data Mining</h1>
+      <h1 class="site-logo" id="site-title">Penambangan Data C</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
@@ -111,7 +112,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Tugas%201.html">
    Tugas 1
@@ -130,6 +131,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="Tugas%204.html">
    Tugas 4
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Tugas 5
   </a>
  </li>
 </ul>
@@ -429,7 +435,7 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-82274369-1fac-4543-921f-645095aa7dae">
+  <div id="df-60647262-7d29-4153-aee4-69d307af6795">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -549,7 +555,7 @@ title="Print to PDF"
 </table>
 <p>150 rows × 5 columns</p>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-82274369-1fac-4543-921f-645095aa7dae')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-60647262-7d29-4153-aee4-69d307af6795')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
 
@@ -600,12 +606,12 @@ title="Print to PDF"
 
       <script>
         const buttonEl =
-          document.querySelector('#df-82274369-1fac-4543-921f-645095aa7dae button.colab-df-convert');
+          document.querySelector('#df-60647262-7d29-4153-aee4-69d307af6795 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-82274369-1fac-4543-921f-645095aa7dae');
+          const element = document.querySelector('#df-60647262-7d29-4153-aee4-69d307af6795');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -638,7 +644,7 @@ title="Print to PDF"
   warnings.warn(msg, FutureWarning)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f0e13ef4590&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f7e5240f610&gt;
 </pre></div>
 </div>
 <img alt="_images/Tugas 5_5_2.png" src="_images/Tugas 5_5_2.png" />
@@ -699,8 +705,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[4.98125   , 3.41666667, 1.4625    , 0.24791667],
-       [5.91111111, 2.7537037 , 4.39074074, 1.42592593],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[5.91111111, 2.7537037 , 4.39074074, 1.42592593],
+       [4.98125   , 3.41666667, 1.4625    , 0.24791667],
        [6.85151515, 3.09090909, 5.76363636, 2.10909091]])
 </pre></div>
 </div>
@@ -715,13 +721,13 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 0, 2, 1, 1, 0, 1, 2, 1, 1, 2, 0, 0, 0, 0, 1, 2, 1, 1, 2, 0, 1,
-       0, 2, 2, 2, 2, 2, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0,
-       0, 1, 1, 2, 1, 2, 1, 2, 1, 0, 2, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0,
-       1, 2, 0, 1, 1, 0, 1, 1, 1, 1, 2, 1, 0, 1, 2, 0, 0, 1, 2, 0, 1, 0,
-       0, 1, 1, 2, 1, 2, 2, 1, 0, 0, 1, 2, 0, 0, 0, 1, 2, 0, 2, 2, 0, 1,
-       1, 1, 1, 2, 0, 2, 1, 2, 1, 1, 1, 0, 1, 1, 0, 1, 2, 2, 0, 1, 2, 2,
-       0, 2, 0], dtype=int32)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 2, 0, 0, 1, 0, 2, 0, 0, 2, 1, 1, 1, 1, 0, 2, 0, 0, 2, 1, 0,
+       1, 2, 2, 2, 2, 2, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1,
+       1, 0, 0, 2, 0, 2, 0, 2, 0, 1, 2, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1,
+       0, 2, 1, 0, 0, 1, 0, 0, 0, 0, 2, 0, 1, 0, 2, 1, 1, 0, 2, 1, 0, 1,
+       1, 0, 0, 2, 0, 2, 2, 0, 1, 1, 0, 2, 1, 1, 1, 0, 2, 1, 2, 2, 1, 0,
+       0, 0, 0, 2, 1, 2, 0, 2, 0, 0, 0, 1, 0, 0, 1, 0, 2, 2, 1, 0, 2, 2,
+       1, 2, 1], dtype=int32)
 </pre></div>
 </div>
 </div>
@@ -734,7 +740,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{0: 48, 1: 54, 2: 33}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{0: 54, 1: 48, 2: 33}
 </pre></div>
 </div>
 </div>
@@ -752,7 +758,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy:  0.9111111111111111
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy:  0.23703703703703705
 </pre></div>
 </div>
 </div>
@@ -769,7 +775,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7f0e10594fd0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7f7e4eadec90&gt;
 </pre></div>
 </div>
 <img alt="_images/Tugas 5_19_1.png" src="_images/Tugas 5_19_1.png" />
@@ -805,6 +811,13 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="Tugas%204.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Tugas 4</p>
+        </div>
+    </a>
 </div>
             </footer>
         </div>
