@@ -362,6 +362,22 @@ title="Print to PDF"
    </strong>
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exploring-some-new-features">
+   <strong>
+    Exploring Some New Features
+   </strong>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#building-classification-model">
+     <strong>
+      Building Classification Model
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </nav>
@@ -388,6 +404,22 @@ title="Print to PDF"
    </strong>
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exploring-some-new-features">
+   <strong>
+    Exploring Some New Features
+   </strong>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#building-classification-model">
+     <strong>
+      Building Classification Model
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
                         </nav>
@@ -408,8 +440,8 @@ title="Print to PDF"
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#import libraries</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
 </pre></div>
 </div>
 </div>
@@ -450,16 +482,45 @@ memory usage: 6.0+ KB
 </div>
 <p>Data berisi total 5 fitur di mana 4 fitur (SepalLengthCm, SepalWidthCm, PetalLengthCm, PetalwidthCm) adalah fitur independen dan 1 fitur (Species) adalah variabel dependen atau target.</p>
 <p>Semua fitur Independen memiliki nilai float bukan nol dan variabel target memiliki label kelas (Iris-setosa, Iris-versicolor, Iris-virginica)</p>
+</section>
+<section id="exploring-some-new-features">
+<h2><strong>Exploring Some New Features</strong><a class="headerlink" href="#exploring-some-new-features" title="Permalink to this headline">#</a></h2>
+<p>Disini saya hanya mencoba mencari beberapa fitur baru dengan bantuan fitur yang sudah ada. Mengambil perbedaan masing-masing fitur satu sama lain untuk mendapatkan lebih banyak informasi dan memvisualisasikannya dengan menggunakan plot.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#checking top 10 records of dataset</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Just trying to explore some new feature using the given data...</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sepal_diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sepal_width&#39;</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Petal_diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;petal_length&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;petal_width&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sepal_petal_len_diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;petal_length&#39;</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sepal_petal_width_diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;sepal_width&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;petal_width&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sepal_petal_len_wid_diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;petal_width&#39;</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sepal_petal_wid_len_diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;sepal_width&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;petal_length&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-e6c8e8f2-0e0d-4989-b070-f0c02d26c8f8">
+  <div id="df-511f6707-b74d-4cd9-9c66-5c584f3fc877">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -484,6 +545,12 @@ memory usage: 6.0+ KB
       <th>petal_length</th>
       <th>petal_width</th>
       <th>species</th>
+      <th>Sepal_diff</th>
+      <th>Petal_diff</th>
+      <th>Sepal_petal_len_diff</th>
+      <th>Sepal_petal_width_diff</th>
+      <th>Sepal_petal_len_wid_diff</th>
+      <th>Sepal_petal_wid_len_diff</th>
     </tr>
   </thead>
   <tbody>
@@ -494,6 +561,12 @@ memory usage: 6.0+ KB
       <td>1.4</td>
       <td>0.2</td>
       <td>Iris-setosa</td>
+      <td>1.6</td>
+      <td>1.2</td>
+      <td>3.7</td>
+      <td>3.3</td>
+      <td>4.9</td>
+      <td>2.1</td>
     </tr>
     <tr>
       <th>1</th>
@@ -502,6 +575,12 @@ memory usage: 6.0+ KB
       <td>1.4</td>
       <td>0.2</td>
       <td>Iris-setosa</td>
+      <td>1.9</td>
+      <td>1.2</td>
+      <td>3.5</td>
+      <td>2.8</td>
+      <td>4.7</td>
+      <td>1.6</td>
     </tr>
     <tr>
       <th>2</th>
@@ -510,6 +589,12 @@ memory usage: 6.0+ KB
       <td>1.3</td>
       <td>0.2</td>
       <td>Iris-setosa</td>
+      <td>1.5</td>
+      <td>1.1</td>
+      <td>3.4</td>
+      <td>3.0</td>
+      <td>4.5</td>
+      <td>1.9</td>
     </tr>
     <tr>
       <th>3</th>
@@ -518,6 +603,12 @@ memory usage: 6.0+ KB
       <td>1.5</td>
       <td>0.2</td>
       <td>Iris-setosa</td>
+      <td>1.5</td>
+      <td>1.3</td>
+      <td>3.1</td>
+      <td>2.9</td>
+      <td>4.4</td>
+      <td>1.6</td>
     </tr>
     <tr>
       <th>4</th>
@@ -526,51 +617,102 @@ memory usage: 6.0+ KB
       <td>1.4</td>
       <td>0.2</td>
       <td>Iris-setosa</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>5.4</td>
-      <td>3.9</td>
-      <td>1.7</td>
-      <td>0.4</td>
-      <td>Iris-setosa</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>4.6</td>
-      <td>3.4</td>
       <td>1.4</td>
-      <td>0.3</td>
-      <td>Iris-setosa</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>5.0</td>
+      <td>1.2</td>
+      <td>3.6</td>
       <td>3.4</td>
-      <td>1.5</td>
-      <td>0.2</td>
-      <td>Iris-setosa</td>
+      <td>4.8</td>
+      <td>2.2</td>
     </tr>
     <tr>
-      <th>8</th>
-      <td>4.4</td>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>6.7</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.3</td>
+      <td>Iris-virginica</td>
+      <td>3.7</td>
       <td>2.9</td>
-      <td>1.4</td>
-      <td>0.2</td>
-      <td>Iris-setosa</td>
+      <td>1.5</td>
+      <td>0.7</td>
+      <td>4.4</td>
+      <td>-2.2</td>
     </tr>
     <tr>
-      <th>9</th>
-      <td>4.9</td>
+      <th>146</th>
+      <td>6.3</td>
+      <td>2.5</td>
+      <td>5.0</td>
+      <td>1.9</td>
+      <td>Iris-virginica</td>
+      <td>3.8</td>
       <td>3.1</td>
-      <td>1.5</td>
-      <td>0.1</td>
-      <td>Iris-setosa</td>
+      <td>1.3</td>
+      <td>0.6</td>
+      <td>4.4</td>
+      <td>-2.5</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>6.5</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.0</td>
+      <td>Iris-virginica</td>
+      <td>3.5</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>1.0</td>
+      <td>4.5</td>
+      <td>-2.2</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>6.2</td>
+      <td>3.4</td>
+      <td>5.4</td>
+      <td>2.3</td>
+      <td>Iris-virginica</td>
+      <td>2.8</td>
+      <td>3.1</td>
+      <td>0.8</td>
+      <td>1.1</td>
+      <td>3.9</td>
+      <td>-2.0</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>5.9</td>
+      <td>3.0</td>
+      <td>5.1</td>
+      <td>1.8</td>
+      <td>Iris-virginica</td>
+      <td>2.9</td>
+      <td>3.3</td>
+      <td>0.8</td>
+      <td>1.2</td>
+      <td>4.1</td>
+      <td>-2.1</td>
     </tr>
   </tbody>
 </table>
+<p>150 rows × 11 columns</p>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-e6c8e8f2-0e0d-4989-b070-f0c02d26c8f8')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-511f6707-b74d-4cd9-9c66-5c584f3fc877')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
 
@@ -621,12 +763,12 @@ memory usage: 6.0+ KB
 
       <script>
         const buttonEl =
-          document.querySelector('#df-e6c8e8f2-0e0d-4989-b070-f0c02d26c8f8 button.colab-df-convert');
+          document.querySelector('#df-511f6707-b74d-4cd9-9c66-5c584f3fc877 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-e6c8e8f2-0e0d-4989-b070-f0c02d26c8f8');
+          const element = document.querySelector('#df-511f6707-b74d-4cd9-9c66-5c584f3fc877');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -647,179 +789,276 @@ memory usage: 6.0+ KB
   </div>
 </div></div>
 </div>
+<p>Sekarang menemukan hubungan antara fitur baru berdasarkan label kelas menggunakan plot pasangan.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#describe function gives the basic numerical info about data for each numeric feature</span>
-<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Finding relationship b/w new feature based on class labels...</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;species&#39;</span><span class="p">,</span> <span class="s1">&#39;Sepal_diff&#39;</span><span class="p">,</span> <span class="s1">&#39;Petal_diff&#39;</span><span class="p">,</span> <span class="s1">&#39;Sepal_petal_len_diff&#39;</span><span class="p">,</span>\
+       <span class="s1">&#39;Sepal_petal_width_diff&#39;</span><span class="p">,</span> <span class="s1">&#39;Sepal_petal_len_wid_diff&#39;</span><span class="p">,</span>\
+       <span class="s1">&#39;Sepal_petal_wid_len_diff&#39;</span><span class="p">]],</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;species&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">
-  <div id="df-5c15458a-8c66-4fd3-8555-497ce9030a09">
-    <div class="colab-df-container">
-      <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>sepal_length</th>
-      <th>sepal_width</th>
-      <th>petal_length</th>
-      <th>petal_width</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>count</th>
-      <td>150.000000</td>
-      <td>150.000000</td>
-      <td>150.000000</td>
-      <td>150.000000</td>
-    </tr>
-    <tr>
-      <th>mean</th>
-      <td>5.843333</td>
-      <td>3.054000</td>
-      <td>3.758667</td>
-      <td>1.198667</td>
-    </tr>
-    <tr>
-      <th>std</th>
-      <td>0.828066</td>
-      <td>0.433594</td>
-      <td>1.764420</td>
-      <td>0.763161</td>
-    </tr>
-    <tr>
-      <th>min</th>
-      <td>4.300000</td>
-      <td>2.000000</td>
-      <td>1.000000</td>
-      <td>0.100000</td>
-    </tr>
-    <tr>
-      <th>25%</th>
-      <td>5.100000</td>
-      <td>2.800000</td>
-      <td>1.600000</td>
-      <td>0.300000</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>5.800000</td>
-      <td>3.000000</td>
-      <td>4.350000</td>
-      <td>1.300000</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>6.400000</td>
-      <td>3.300000</td>
-      <td>5.100000</td>
-      <td>1.800000</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>7.900000</td>
-      <td>4.400000</td>
-      <td>6.900000</td>
-      <td>2.500000</td>
-    </tr>
-  </tbody>
-</table>
+<img alt="_images/Tugas 6_11_0.png" src="_images/Tugas 6_11_0.png" />
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-5c15458a-8c66-4fd3-8555-497ce9030a09')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M0 0h24v24H0V0z" fill="none"/>
-    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
-  </svg>
-      </button>
-
-  <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-      <script>
-        const buttonEl =
-          document.querySelector('#df-5c15458a-8c66-4fd3-8555-497ce9030a09 button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-5c15458a-8c66-4fd3-8555-497ce9030a09');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
-
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
-  </div>
-</div></div>
 </div>
-<p>dengan function “df_describe()” akan mendapatkan beberapa informasi numerik seperti jumlah total datapoints, nilai rata-rata, nilai standart deviasi, dll. Ini akan membantu untuk memahami beberapa analisis statistik dasar pada data.</p>
+<section id="building-classification-model">
+<h3><strong>Building Classification Model</strong><a class="headerlink" href="#building-classification-model" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Now try to create a model to solve our task</span>
+<span class="c1">#As per our analysis, we can&#39;t find much information from new feature which can helpful in solving our problem...</span>
+<span class="c1">#For solving our task I have selected few features amongs all to build up our best model..</span>
+
+<span class="sd">&#39;&#39;&#39;Importing few library for create Decision tree classifier and visualizing the tree structure&#39;&#39;&#39;</span>
+
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">tree</span>
+<span class="kn">import</span> <span class="nn">graphviz</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">cross_val_score</span>
+
+
+<span class="sd">&#39;&#39;&#39;Here we separating independent varibles or target varibles from Iris dataset&#39;&#39;&#39;</span>
+
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal_width&#39;</span><span class="p">,</span><span class="s1">&#39;petal_length&#39;</span><span class="p">,</span> <span class="s1">&#39;petal_width&#39;</span><span class="p">,</span><span class="s1">&#39;Sepal_petal_wid_len_diff&#39;</span><span class="p">,</span><span class="s1">&#39;Sepal_petal_width_diff&#39;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span>
+
+
+<span class="c1">#Before training the model we have split our data into Actual Train and Actual Test Dataset for training and validating purpose...</span>
+
+<span class="n">Xtrain</span><span class="p">,</span> <span class="n">Xtest</span><span class="p">,</span> <span class="n">Ytrain</span><span class="p">,</span> <span class="n">Ytest</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.30</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1">#spliting data into validation train and validation test</span>
+<span class="n">Xt</span><span class="p">,</span> <span class="n">Xcv</span><span class="p">,</span> <span class="n">Yt</span><span class="p">,</span> <span class="n">Ycv</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">Xtrain</span><span class="p">,</span> <span class="n">Ytrain</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+
+<span class="sd">&#39;&#39;&#39;Now we have create a Decision tree classifier and trained it with training dataset.&#39;&#39;&#39;</span>
+
+
+<span class="n">Iris_clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;gini&#39;</span><span class="p">,</span><span class="n">min_samples_split</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Iris_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Xt</span><span class="p">,</span> <span class="n">Yt</span><span class="p">)</span>
+
+<span class="c1">#Visualized the Tree which is formed on train dataset</span>
+
+<span class="n">tree</span><span class="o">.</span><span class="n">plot_tree</span><span class="p">(</span><span class="n">Iris_clf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0.45454545454545453, 0.9166666666666666, &#39;X[3] &lt;= 0.8\ngini = 0.665\nsamples = 94\nvalue = [30, 30, 34]&#39;),
+ Text(0.36363636363636365, 0.75, &#39;gini = 0.0\nsamples = 30\nvalue = [30, 0, 0]&#39;),
+ Text(0.5454545454545454, 0.75, &#39;X[4] &lt;= -1.9\ngini = 0.498\nsamples = 64\nvalue = [0, 30, 34]&#39;),
+ Text(0.36363636363636365, 0.5833333333333334, &#39;X[3] &lt;= 1.75\ngini = 0.153\nsamples = 36\nvalue = [0, 3, 33]&#39;),
+ Text(0.2727272727272727, 0.4166666666666667, &#39;X[2] &lt;= 5.05\ngini = 0.49\nsamples = 7\nvalue = [0, 3, 4]&#39;),
+ Text(0.18181818181818182, 0.25, &#39;X[5] &lt;= 0.9\ngini = 0.375\nsamples = 4\nvalue = [0, 3, 1]&#39;),
+ Text(0.09090909090909091, 0.08333333333333333, &#39;gini = 0.0\nsamples = 1\nvalue = [0, 0, 1]&#39;),
+ Text(0.2727272727272727, 0.08333333333333333, &#39;gini = 0.0\nsamples = 3\nvalue = [0, 3, 0]&#39;),
+ Text(0.36363636363636365, 0.25, &#39;gini = 0.0\nsamples = 3\nvalue = [0, 0, 3]&#39;),
+ Text(0.45454545454545453, 0.4166666666666667, &#39;gini = 0.0\nsamples = 29\nvalue = [0, 0, 29]&#39;),
+ Text(0.7272727272727273, 0.5833333333333334, &#39;X[3] &lt;= 1.65\ngini = 0.069\nsamples = 28\nvalue = [0, 27, 1]&#39;),
+ Text(0.6363636363636364, 0.4166666666666667, &#39;gini = 0.0\nsamples = 26\nvalue = [0, 26, 0]&#39;),
+ Text(0.8181818181818182, 0.4166666666666667, &#39;X[5] &lt;= 1.3\ngini = 0.5\nsamples = 2\nvalue = [0, 1, 1]&#39;),
+ Text(0.7272727272727273, 0.25, &#39;gini = 0.0\nsamples = 1\nvalue = [0, 0, 1]&#39;),
+ Text(0.9090909090909091, 0.25, &#39;gini = 0.0\nsamples = 1\nvalue = [0, 1, 0]&#39;)]
+</pre></div>
+</div>
+<img alt="_images/Tugas 6_13_1.png" src="_images/Tugas 6_13_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Visualizing Decision Tree using graphviz library</span>
+
+<span class="n">dot_data</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">export_graphviz</span><span class="p">(</span><span class="n">Iris_clf</span><span class="p">,</span> <span class="n">out_file</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="n">graph</span> <span class="o">=</span> <span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">dot_data</span><span class="p">)</span>
+<span class="n">graph</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Tugas 6_14_0.svg" src="_images/Tugas 6_14_0.svg" /></div>
+</div>
+<p>Karena model kami telah dilatih….
+Sekarang kita dapat memvalidasi pohon keputusan kita menggunakan metode validasi silang untuk mendapatkan akurasi atau skor kinerja model kita.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Accuracy score is:&#39;</span><span class="p">,</span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">Iris_clf</span><span class="p">,</span> <span class="n">Xt</span><span class="p">,</span> <span class="n">Yt</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;accuracy&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy score is: 0.9254032258064516
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Checking validation test data on our trained model and getting performance metrices</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">multilabel_confusion_matrix</span><span class="p">,</span> <span class="n">accuracy_score</span>
+
+<span class="n">Y_hat</span> <span class="o">=</span> <span class="n">Iris_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xcv</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Accuracy score for validation test data is:&#39;</span><span class="p">,</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">Ycv</span><span class="p">,</span> <span class="n">Y_hat</span><span class="p">))</span>
+<span class="n">multilabel_confusion_matrix</span><span class="p">(</span><span class="n">Ycv</span> <span class="p">,</span> <span class="n">Y_hat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy score for validation test data is: 0.9090909090909091
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[10,  0],
+        [ 0,  1]],
+
+       [[ 4,  0],
+        [ 1,  6]],
+
+       [[ 7,  1],
+        [ 0,  3]]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Checking our model performance on actual unseen test data.. </span>
+<span class="n">YT_hat</span> <span class="o">=</span> <span class="n">Iris_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xtest</span><span class="p">)</span>
+<span class="n">YT_hat</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Model Accuracy Score on totally unseen data(Xtest) is:&#39;</span><span class="p">,</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">Ytest</span><span class="p">,</span> <span class="n">YT_hat</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="s1">&#39;%&#39;</span><span class="p">)</span>
+<span class="n">multilabel_confusion_matrix</span><span class="p">(</span><span class="n">Ytest</span> <span class="p">,</span> <span class="n">YT_hat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model Accuracy Score on totally unseen data(Xtest) is: 97.77777777777777 %
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[26,  0],
+        [ 0, 19]],
+
+       [[32,  0],
+        [ 1, 12]],
+
+       [[31,  1],
+        [ 0, 13]]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Seperti yang kami ketahui, fitur yang kami pilih berfungsi dengan baik dan model memberikan skor akurasi yang sangat baik pada validasi atau data uji aktual. Jadi sekarang kita bisa melatih model kita pada train dataset yang sebenarnya dengan fitur yang dipilih untuk mengevaluasi/menerapkan model kita dalam kasus dunia nyata.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;Training model on Actual train data... &#39;&#39;&#39;</span>
+<span class="n">Iris_Fclf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;gini&#39;</span><span class="p">,</span><span class="n">min_samples_split</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Iris_Fclf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Xtrain</span><span class="p">,</span> <span class="n">Ytrain</span><span class="p">)</span>
+
+<span class="c1">#Visualize tree structure..</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">plot_tree</span><span class="p">(</span><span class="n">Iris_Fclf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0.6, 0.9375, &#39;X[5] &lt;= 1.9\ngini = 0.664\nsamples = 105\nvalue = [31, 37, 37]&#39;),
+ Text(0.5, 0.8125, &#39;X[4] &lt;= -1.9\ngini = 0.5\nsamples = 74\nvalue = [0, 37, 37]&#39;),
+ Text(0.3, 0.6875, &#39;X[3] &lt;= 1.75\ngini = 0.18\nsamples = 40\nvalue = [0, 4, 36]&#39;),
+ Text(0.2, 0.5625, &#39;X[4] &lt;= -2.6\ngini = 0.494\nsamples = 9\nvalue = [0, 4, 5]&#39;),
+ Text(0.1, 0.4375, &#39;gini = 0.0\nsamples = 3\nvalue = [0, 0, 3]&#39;),
+ Text(0.3, 0.4375, &#39;X[5] &lt;= 0.9\ngini = 0.444\nsamples = 6\nvalue = [0, 4, 2]&#39;),
+ Text(0.2, 0.3125, &#39;gini = 0.0\nsamples = 1\nvalue = [0, 0, 1]&#39;),
+ Text(0.4, 0.3125, &#39;X[5] &lt;= 1.2\ngini = 0.32\nsamples = 5\nvalue = [0, 4, 1]&#39;),
+ Text(0.3, 0.1875, &#39;gini = 0.0\nsamples = 3\nvalue = [0, 3, 0]&#39;),
+ Text(0.5, 0.1875, &#39;X[4] &lt;= -2.15\ngini = 0.5\nsamples = 2\nvalue = [0, 1, 1]&#39;),
+ Text(0.4, 0.0625, &#39;gini = 0.0\nsamples = 1\nvalue = [0, 0, 1]&#39;),
+ Text(0.6, 0.0625, &#39;gini = 0.0\nsamples = 1\nvalue = [0, 1, 0]&#39;),
+ Text(0.4, 0.5625, &#39;gini = 0.0\nsamples = 31\nvalue = [0, 0, 31]&#39;),
+ Text(0.7, 0.6875, &#39;X[3] &lt;= 1.65\ngini = 0.057\nsamples = 34\nvalue = [0, 33, 1]&#39;),
+ Text(0.6, 0.5625, &#39;gini = 0.0\nsamples = 32\nvalue = [0, 32, 0]&#39;),
+ Text(0.8, 0.5625, &#39;X[1] &lt;= 3.1\ngini = 0.5\nsamples = 2\nvalue = [0, 1, 1]&#39;),
+ Text(0.7, 0.4375, &#39;gini = 0.0\nsamples = 1\nvalue = [0, 0, 1]&#39;),
+ Text(0.9, 0.4375, &#39;gini = 0.0\nsamples = 1\nvalue = [0, 1, 0]&#39;),
+ Text(0.7, 0.8125, &#39;gini = 0.0\nsamples = 31\nvalue = [31, 0, 0]&#39;)]
+</pre></div>
+</div>
+<img alt="_images/Tugas 6_20_1.png" src="_images/Tugas 6_20_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Final Decision tree build for deploying in real world cases....</span>
+
+<span class="n">dot_data</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">export_graphviz</span><span class="p">(</span><span class="n">Iris_Fclf</span><span class="p">,</span> <span class="n">out_file</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">dot_data</span><span class="p">)</span>
+<span class="n">graph</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Tugas 6_21_0.svg" src="_images/Tugas 6_21_0.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Checking the performance of model on Actual Test data...</span>
+
+<span class="n">YT_Fhat</span> <span class="o">=</span> <span class="n">Iris_Fclf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xtest</span><span class="p">)</span>
+<span class="n">YT_Fhat</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Model Accuracy Score on totally unseen data(Xtest) is:&#39;</span><span class="p">,</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">Ytest</span><span class="p">,</span> <span class="n">YT_Fhat</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="s1">&#39;%&#39;</span><span class="p">)</span>
+<span class="n">multilabel_confusion_matrix</span><span class="p">(</span><span class="n">Ytest</span> <span class="p">,</span> <span class="n">YT_Fhat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model Accuracy Score on totally unseen data(Xtest) is: 97.77777777777777 %
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[26,  0],
+        [ 0, 19]],
+
+       [[32,  0],
+        [ 1, 12]],
+
+       [[31,  1],
+        [ 0, 13]]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Testing for New points except from Dataset</span>
+
+<span class="n">Test_point</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">5.4</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">4.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">],</span>
+             <span class="p">[</span><span class="mf">6.5</span><span class="p">,</span><span class="mf">2.8</span><span class="p">,</span><span class="mf">4.6</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="o">-</span><span class="mf">1.8</span><span class="p">,</span><span class="mf">1.3</span><span class="p">],</span>
+             <span class="p">[</span><span class="mf">5.1</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">1.1</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">1.4</span><span class="p">],</span>
+             <span class="p">[</span><span class="mf">5.1</span><span class="p">,</span><span class="mf">3.3</span><span class="p">,</span><span class="mf">1.7</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">1.6</span><span class="p">,</span><span class="mf">2.8</span><span class="p">],</span>
+             <span class="p">[</span><span class="mf">6.0</span><span class="p">,</span><span class="mf">2.7</span><span class="p">,</span><span class="mf">5.1</span><span class="p">,</span><span class="mf">1.6</span><span class="p">,</span><span class="o">-</span><span class="mf">2.4</span><span class="p">,</span><span class="mf">1.1</span><span class="p">],</span>
+             <span class="p">[</span><span class="mf">6.0</span><span class="p">,</span><span class="mf">2.2</span><span class="p">,</span><span class="mf">5.0</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="o">-</span><span class="mf">2.8</span><span class="p">,</span><span class="mf">0.7</span><span class="p">]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">Iris_Fclf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Test_point</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-setosa&#39;
+ &#39;Iris-versicolor&#39; &#39;Iris-virginica&#39;]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.7/dist-packages/sklearn/base.py:451: UserWarning: X does not have valid feature names, but DecisionTreeClassifier was fitted with feature names
+  &quot;X does not have valid feature names, but&quot;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 </section>
 
